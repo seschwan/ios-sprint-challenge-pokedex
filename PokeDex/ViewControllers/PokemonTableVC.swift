@@ -54,14 +54,16 @@ class PokemonTableVC: UITableViewController {
         if segue.identifier == "ToSearchPokedex" {
             guard let pokemonVC = segue.destination as? PokemonVC else { return }
             pokemonVC.pokemonController = self.pokemonController
-            pokemonVC.hiddenOutlets = true
+            pokemonVC.hiddenOutletsVisible = true
+            pokemonVC.saveBtnVisible = true
         } else if segue.identifier == "ToPokeDetail" {
             guard let indexPath = self.tableView.indexPathForSelectedRow,
                 let pokemonVC = segue.destination as? PokemonVC else { return }
             let pokemon = self.pokemonController.pokemanArray[indexPath.row]
             pokemonVC.pokemon = pokemon
             pokemonVC.pokemonController = self.pokemonController
-            pokemonVC.searchBarBool = true
+            pokemonVC.searchBarVisible = true
+            pokemonVC.saveBtnVisible = true
             
         }
     }

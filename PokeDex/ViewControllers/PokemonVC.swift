@@ -34,15 +34,18 @@ class PokemonVC: UIViewController, UISearchBarDelegate {
         
     }
     
-    var hiddenOutlets = false
-    var searchBarBool = false
+    var hiddenOutletsVisible = false
+    var searchBarVisible     = false
+    var saveBtnVisible       = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         savePokemanBtn.layer.cornerRadius = savePokemanBtn.frame.height/2
         searchBar.delegate = self
-        hiddenOutlets(hiddenOutletsBool: hiddenOutlets)
-        hideSearchBar(searchBarBool: searchBarBool)
+        hiddenOutlets(hiddenOutletsBool: hiddenOutletsVisible)
+        hideSearchBar(searchBarBool: searchBarVisible)
+        hideSaveBtn(saveBtnBool: saveBtnVisible)
+        
         
         
     }
@@ -78,8 +81,10 @@ class PokemonVC: UIViewController, UISearchBarDelegate {
                 self.updateViews()
             }
         })
-        hiddenOutlets = false
-        hiddenOutlets(hiddenOutletsBool: hiddenOutlets)
+        hiddenOutletsVisible = false
+        hiddenOutlets(hiddenOutletsBool: hiddenOutletsVisible)
+        saveBtnVisible = false
+        hideSaveBtn(saveBtnBool: saveBtnVisible)
     }
 
     @IBAction func savePokeBtnPressed(_ sender: UIButton) {
@@ -97,14 +102,12 @@ class PokemonVC: UIViewController, UISearchBarDelegate {
             idLbl.isHidden            = true
             abilitiesLbl.isHidden     = true
             typesLbl.isHidden         = true
-            savePokemanBtn.isHidden   = true
         } else {
             nameLbl.isHidden          = false
             pokemanImageView.isHidden = false
             idLbl.isHidden            = false
             abilitiesLbl.isHidden     = false
             typesLbl.isHidden         = false
-            savePokemanBtn.isHidden   = false
         }
     }
     
@@ -113,6 +116,14 @@ class PokemonVC: UIViewController, UISearchBarDelegate {
             searchBar.isHidden = true
         } else {
             searchBar.isHidden = false
+        }
+    }
+    
+    func hideSaveBtn(saveBtnBool: Bool) {
+        if saveBtnVisible {
+            savePokemanBtn.isHidden = true
+        } else {
+            savePokemanBtn.isHidden = false
         }
     }
 
